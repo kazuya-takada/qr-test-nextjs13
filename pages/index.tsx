@@ -11,6 +11,7 @@ const Home: NextPage = () => {
 
   return (
     <div>
+      <h1>読み取り結果：{data}</h1>
       <button onClick={openQRReader}>起動</button>
       <button onClick={closeQRReader}>停止</button>
       {isOpened && (
