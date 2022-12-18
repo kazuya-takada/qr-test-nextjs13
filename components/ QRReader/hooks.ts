@@ -1,9 +1,9 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
-import { BrowserQRCodeReader, IScannerControls } from '@zxing/browser';
+import { MutableRefObject, useEffect, useRef } from 'react'
+import { BrowserQRCodeReader, IScannerControls } from '@zxing/browser'
 
-import { UseQrReaderHook } from '../types';
+import { UseQrReaderHook } from './types'
 
-import { isMediaDevicesSupported, isValidType } from './utils';
+import { isMediaDevicesSupported, isValidType } from './utils'
 
 // TODO: add support for debug logs
 export const useQrReader: UseQrReaderHook = ({
@@ -13,23 +13,20 @@ export const useQrReader: UseQrReaderHook = ({
   videoId,
 }) => {
   // @ts-ignore
-  const controlsRef: MutableRefObject<IScannerControls> = useRef(null);
+  const controlsRef: MutableRefObject<IScannerControls> = useRef(null)
 
   useEffect(() => {
     // @ts-ignore
     const codeReader = new BrowserQRCodeReader(null, {
       delayBetweenScanAttempts,
-    });
+    })
 
-    if (
-      !isMediaDevicesSupported() &&
-      isValidType(onResult, 'onResult', 'function')
-    ) {
+    if (!isMediaDevicesSupported() && isValidType(onResult, 'onResult', 'function')) {
       const message =
-        'MediaDevices API has no support for your browser. You can fix this by running "npm i webrtc-adapter"';
+        'MediaDevices API has no support for your browser. You can fix this by running "npm i webrtc-adapter"'
 
       // @ts-ignore
-      onResult(null, new Error(message), codeReader);
+      onResult(null, new Error(message), codeReader)
     }
 
     if (isValidType(video, 'constraints', 'object')) {
@@ -37,20 +34,20 @@ export const useQrReader: UseQrReaderHook = ({
         .decodeFromConstraints({ video }, videoId, (result, error) => {
           if (isValidType(onResult, 'onResult', 'function')) {
             // @ts-ignore
-            onResult(result, error, codeReader);
+            onResult(result, error, codeReader)
           }
         })
         .then((controls: IScannerControls) => (controlsRef.current = controls))
         .catch((error: Error) => {
           if (isValidType(onResult, 'onResult', 'function')) {
             // @ts-ignore
-            onResult(null, error, codeReader);
+            onResult(null, error, codeReader)
           }
-        });
+        })
     }
 
     return () => {
-      controlsRef.current?.stop();
-    };
-  }, []);
-};
+      controlsRef.current?.stop()
+    }
+  }, [])
+}

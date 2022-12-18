@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import { QrReader } from '../utils/ QRReader/Implementation'
+import { QrReader } from '../components/ QRReader'
 
 const Home: NextPage = () => {
   const [data, setData] = useState('読み取り結果はここに表示')

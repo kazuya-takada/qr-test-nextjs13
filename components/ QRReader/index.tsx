@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { styles } from './styles';
-import { useQrReader } from './hooks';
+import { styles } from './styles'
+import { useQrReader } from './hooks'
 
-import { QrReaderProps } from '../types';
+import { QrReaderProps } from './types'
 
 export const QrReader: React.FC<QrReaderProps> = ({
   videoContainerStyle,
@@ -21,7 +21,7 @@ export const QrReader: React.FC<QrReaderProps> = ({
     scanDelay,
     onResult,
     videoId,
-  });
+  })
 
   return (
     <section className={className} style={containerStyle}>
@@ -43,14 +43,14 @@ export const QrReader: React.FC<QrReaderProps> = ({
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
-QrReader.displayName = 'QrReader';
+QrReader.displayName = 'QrReader'
 QrReader.defaultProps = {
   constraints: {
     facingMode: 'user',
   },
   videoId: 'video',
   scanDelay: 500,
-};
+}
