@@ -19,6 +19,6 @@
 
 # 開発メモ
 
-- とりあえず、utils というフォルダ作って、そこにそのままコピーをぶち込んだ
-- 以下記事もよさそうなので、後で試す
-  - https://zenn.dev/terrierscript/articles/2020-12-22-zxing-browser-react-qr-code-reader
+- QRReader コンポーネントとして、components ディレクトリに作成。基本的に実装は`react-qr-reader`の中身をコピペ。（ただし、ファイル構成は少し修正）
+- スタイリングには Tailwind を使用
+  - `tailwind.config.js`に`mode: 'jit'`を設定すること
